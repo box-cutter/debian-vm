@@ -25,6 +25,8 @@ PROVISIONER_VERSION=${PROVISIONER_VERSION:-latest}
 # Provisioner installs
 #
 
+sudo apt-get install curl -y
+
 install_chef()
 {
     echo "==> Installing Chef provisioner"
