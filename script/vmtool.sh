@@ -19,7 +19,7 @@ fi
 if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
     echo "==> Installing VirtualBox guest additions"
     # Assuming the following packages are installed:
-    # apt-get install -y linux-headers-$(uname -r) build-essential perl
+    apt-get install -y linux-headers-$(uname -r) build-essential perl
     # apt-get install -y dkms
 
     VBOX_VERSION=$(cat /home/vagrant/.vbox_version)
