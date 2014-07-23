@@ -74,9 +74,9 @@
   "provisioners": [{
     "type": "shell",
     "environment_vars": [
-      "CM={{user `cm`}}",
-      "CM_VERSION={{user `cm_version`}}",
-      "CM_SET_PATH={{user `cm_set_path`}}",
+      "PROVISIONER={{user `cm`}}",
+      "PROVISIONER_VERSION={{user `cm_version`}}",
+      "PROVISIONER_SET_PATH={{user `cm_set_path`}}",
       "CLEANUP_PAUSE={{user `cleanup_pause`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
