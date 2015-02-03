@@ -1,5 +1,12 @@
 #!/bin/bash -eux
 
+echo "==> install localepurge to remove all unnecesary languages"
+apt-get install -y localepurge
+localepurge
+
+echo "==> Disk usage before cleanup"
+df -h
+
 echo "==> Installed packages before cleanup"
 dpkg --get-selections | grep -v deinstall
 
@@ -48,12 +55,17 @@ done
 apt-get -y purge deborphan dialog
 
 echo "==> Removing man pages"
-rm -rf /usr/share/man/*
+find /usr/share/man -type f -delete
 echo "==> Removing APT files"
-find /var/lib/apt -type f | xargs rm -f
+find /var/lib/apt -type f -delete
 echo "==> Removing anything in /usr/src"
 rm -rf /usr/src/*
 echo "==> Removing any docs"
-rm -rf /usr/share/doc/*
+find /usr/share/doc -type f -delete
 echo "==> Removing caches"
-find /var/cache -type f -exec rm -rf {} \;
+find /var/cache -type f -delete
+echo "==> Removing groff info lintian linda"
+rm -rf /usr/share/groff/* /usr/share/info/* /usr/share/lintian/* /usr/share/linda/*
+
+echo "==> Disk usage after cleanup"
+df -h
